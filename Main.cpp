@@ -28,7 +28,6 @@ int main() {
 
     blocks->replaceByOptimal(request);
 
-    blocks->print();
+//    blocks->print();
 
-    cout<<"hello"<<endl;
 }

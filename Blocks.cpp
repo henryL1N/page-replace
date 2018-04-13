@@ -83,6 +83,11 @@ void Blocks::replaceByOptimal(PageRequest *pageRequest) {
         next = new Blocks(this);
         next->replaceByOptimal(pageRequest->getNext());
     }
+    if (!previous) {
+        cout << endl;
+        cout << "Optimal page replacement algorithm:" << endl;
+        print();
+    }
 }
 
 Block *Blocks::getBlockByOptimal(PageRequest *pageRequest) {
@@ -233,6 +238,7 @@ void Blocks::print() {
             blockIndex++;
             block = block->getNext();
         } else {
+            printReplacement();
             break;
         }
     } while (true);
@@ -284,4 +290,33 @@ void Blocks::printPageNumbersByBlockIndex(int blockIndex) {
 
 Blocks::RequestResultEnum Blocks::getRequestResult() {
     return requestResult;
+}
+
+void Blocks::printReplacement() {
+    if (requestResult == REPLACE_REQUIRE) {
+        cout << " ^ ";
+    } else {
+        cout << "   ";
+    }
+    if (next) {
+        cout << " ";
+        next->printReplacement();
+    } else {
+        cout << endl;
+    }
+    if (!previous) {
+        cout << "Replacement count: " << getReplacementCount() << endl;
+    }
+}
+
+int Blocks::getReplacementCount() {
+    int isReplaced = 0;
+    if (requestResult == REPLACE_REQUIRE) {
+        isReplaced = 1;
+    }
+    if (next) {
+        return isReplaced + next->getReplacementCount();
+    } else {
+        return isReplaced;
+    }
 }

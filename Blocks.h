@@ -51,6 +51,12 @@ private:
      */
     void printPageNumbersByBlockIndex(int blockIndex);
 
+    /**
+     * Print replacement tag and count.
+     * @return replacement count
+     */
+    void printReplacement();
+
 public:
 
     /**
@@ -152,6 +158,12 @@ public:
      * Print blocks with page request;
      */
     void print();
+
+    /**
+     * Get replacement count.
+     * @return replacement count
+     */
+    int getReplacementCount();
 
 };
 
