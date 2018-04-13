@@ -14,18 +14,10 @@ class Block {
 
 private:
 
-    Block *previous;
-
-    Block *next;
-
     /**
      * -1 means empty block
      */
     int pageNumber;
-
-//    int loadTime;
-
-//    int accessTime;
 
 public:
 
@@ -35,42 +27,16 @@ public:
     Block();
 
     /**
-     * Get previous block.
-     * @return pointer of previous block
-     */
-    Block *getPrevious();
-
-    /**
-     * Set previous block.
-     * @param previous pointer of previous block
-     */
-    void setPrevious(Block *previous);
-
-    /**
-     * Get next block.
-     * @return pointer of next block
-     */
-    Block *getNext();
-
-    /**
-     * Set next block.
-     * @param next pointer of next block
-     */
-    void setNext(Block *next);
-
-    /**
      * Get stored page number.
      * @return stored page number
      */
     int getPageNumber();
 
     /**
-     * Set stored page number.
-     * @param pageNumber page number to be stored
+     * Load page.
+     * @param pageNumber page number to be loaded
      */
-    void setPageNumber(int pageNumber);
-
-    PageRequest *getNextRequestOfSamePage(PageRequest *pageRequest);
+    void load(int pageNumber);
 
     /**
      * Clear page number (set -1).

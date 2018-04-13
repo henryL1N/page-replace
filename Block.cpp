@@ -5,32 +5,10 @@
 #include "Block.h"
 
 Block::Block() {
-    previous = nullptr;
-    next = nullptr;
-    pageNumber = -1;
+    clear();
 }
 
-Block *Block::getPrevious() {
-    return previous;
-}
-
-void Block::setPrevious(Block *previous) {
-    this->previous = previous;
-}
-
-Block *Block::getNext() {
-    return next;
-}
-
-void Block::setNext(Block *next) {
-    this->next = next;
-}
-
-int Block::getPageNumber() {
-    return pageNumber;
-}
-
-void Block::setPageNumber(int pageNumber) {
+void Block::load(int pageNumber) {
     this->pageNumber = pageNumber;
 }
 
