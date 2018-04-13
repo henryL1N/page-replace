@@ -7,6 +7,7 @@
 
 #include <list>
 #include "Block.h"
+#include "PageReplacementAlgorithm.h"
 
 using namespace std;
 
@@ -18,9 +19,13 @@ public:
 
 private:
 
-    list<Block> blocks;
+    list<Block> *blocks;
+
+    PageReplacementAlgorithm *pageReplacementAlgorithm;
 
 public:
+
+    explicit Memory(int blocksCount);
 
 
 

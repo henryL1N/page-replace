@@ -7,13 +7,16 @@
 
 #include <list>
 #include "Block.h"
+#include "RequestSequence.h"
 using namespace std;
 
 class PageReplacementAlgorithm {
 
 public:
 
-    virtual void replace(list<Block> blocks, int pageNumber);
+    virtual void replace(list<Block> *blocks, int pageNumber);
+
+    virtual void replace(list<Block> *blocks, RequestSequence *requestSequence);
 
 };
 
