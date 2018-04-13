@@ -28,6 +28,10 @@ int main() {
 
     blocks->replaceByOptimal(request);
 
+    blocks->clear();
+
+    blocks->replaceByFIFO(request);
+
 //    blocks->print();
 
 }

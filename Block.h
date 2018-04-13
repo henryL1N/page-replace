@@ -72,6 +72,11 @@ public:
 
     PageRequest *getNextRequestOfSamePage(PageRequest *pageRequest);
 
+    /**
+     * Clear page number (set -1).
+     */
+    void clear();
+
 };
 
 #endif //PAGE_REPLACE_CPP_BLOCK_H

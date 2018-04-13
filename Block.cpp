@@ -5,9 +5,9 @@
 #include "Block.h"
 
 Block::Block() {
-    previous= nullptr;
-    next= nullptr;
-    pageNumber=-1;
+    previous = nullptr;
+    next = nullptr;
+    pageNumber = -1;
 }
 
 Block *Block::getPrevious() {
@@ -32,4 +32,8 @@ int Block::getPageNumber() {
 
 void Block::setPageNumber(int pageNumber) {
     this->pageNumber = pageNumber;
+}
+
+void Block::clear() {
+    pageNumber = -1;
 }

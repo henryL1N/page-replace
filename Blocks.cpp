@@ -320,3 +320,35 @@ int Blocks::getReplacementCount() {
         return isReplaced;
     }
 }
+
+void Blocks::replaceByFIFO(PageRequest *pageRequest) {
+    RequestResultEnum requestResult = request(pageRequest);
+    if (requestResult == REPLACE_REQUIRE) {
+        getBlockByFIFO(pageRequest)->setPageNumber(pageRequest->getPageNumber());
+    }
+    if (pageRequest->getNext()) {
+        next = new Blocks(this);
+        next->replaceByFIFO(pageRequest->getNext());
+    }
+    if (!previous) {
+        cout << endl;
+        cout << "FIFO page replacement algorithm:" << endl;
+        print();
+    }
+
+}
+
+Block *Blocks::getBlockByFIFO(PageRequest *pageRequest) {
+    return headBlock;
+}
+
+void Blocks::clear() {
+    if (next) {
+        next->clear();
+    }
+    Block *block = headBlock;
+    do {
+        block->clear();
+        block = block->getNext();
+    } while (block);
+}

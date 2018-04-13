@@ -8,6 +8,7 @@
 #include <iostream>
 #include "PageRequest.h"
 #include "Block.h"
+
 using namespace std;
 
 /**
@@ -38,6 +39,27 @@ private:
     Block *headBlock;
 
     RequestResultEnum requestResult;
+
+    /**
+     * Get the block to be replaced according optimal algorithm.
+     * @param pageRequest pointer of the first page request
+     * @return block to be replaced
+     */
+    Block *getBlockByOptimal(PageRequest *pageRequest);
+
+    /**
+     * Get the block to be replaced according FIFO(First In First Out) algorithm.
+     * @param pageRequest pointer of the first page request
+     * @return block to be replaced
+     */
+    Block *getBlockByFIFO(PageRequest *pageRequest);
+
+    /**
+     * Get the block to be replaced according LRU(Least Recently Used) algorithm.
+     * @param pageRequest pointer of the first page request
+     * @return block to be replaced
+     */
+    Block *getBlockByLRU(PageRequest *pageRequest);
 
     /**
      * Print line according to pageRequest.
@@ -145,8 +167,6 @@ public:
      */
     void replaceByLRU(PageRequest *pageRequest);
 
-    Block *getBlockByOptimal(PageRequest *pageRequest);
-
     /**
      * Request specified page in the blocks.
      * @param pageRequest pointer of page request
@@ -164,6 +184,11 @@ public:
      * @return replacement count
      */
     int getReplacementCount();
+
+    /**
+     * Empty all block and delete next.
+     */
+    void clear();
 
 };
 
