@@ -8,21 +8,14 @@
 #include <iostream>
 #include "PageRequest.h"
 #include "Block.h"
+using namespace std;
 
 /**
  * Blocks state
  */
 class Blocks {
 
-private:
-
-    Blocks *previous;
-
-    Blocks *next;
-
-//    PageRequest *pageRequest;
-
-    Block *headBlock;
+public:
 
     enum RequestResultEnum {
 
@@ -34,11 +27,23 @@ private:
 
     };
 
+private:
+
+    Blocks *previous;
+
+    Blocks *next;
+
+    PageRequest *pageRequest;
+
+    Block *headBlock;
+
+    RequestResultEnum requestResult;
+
     /**
      * Print line according to pageRequest.
      * @param pageRequest
      */
-    void printLineWithPageRequest(PageRequest *pageRequest);
+    void printLine();
 
     /**
      * Print page number by block index.
@@ -109,6 +114,11 @@ public:
     void setHeadBlock(Block *headBlock);
 
     /**
+     * Get the result of request;
+     */
+    RequestResultEnum getRequestResult();
+
+    /**
      * Replace block with "Optimal" algorithm.
      * Replace the block that contains the page which will be request in the furthest future.
      * @param pageRequest pointer of the first page request
@@ -141,7 +151,7 @@ public:
     /**
      * Print blocks with page request;
      */
-    void printWithPageRequest(PageRequest *pageRequest);
+    void print();
 
 };
 

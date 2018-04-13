@@ -7,11 +7,11 @@
 PageRequest::PageRequest(int *pageNumberArray, int requestsCount) {
     PageRequest *pageRequest;
 
-    previous=nullptr;
-    next= nullptr;
+    previous = nullptr;
+    next = nullptr;
     pageNumber = pageNumberArray[0];
     pageRequest = this;
-    if(requestsCount>1){
+    if (requestsCount > 1) {
         pageRequest->setNext(new PageRequest(++pageNumberArray, --requestsCount));
         pageRequest->getNext()->setPrevious(pageRequest);
     }
@@ -40,4 +40,14 @@ int PageRequest::getPageNumber() {
 
 void PageRequest::setPageNumber(int pageNumber) {
     this->pageNumber = pageNumber;
+}
+
+void PageRequest::print() {
+    cout << pageNumber;
+    if (next) {
+        cout << "   ";
+        next->print();
+    } else {
+        cout << endl;
+    }
 }

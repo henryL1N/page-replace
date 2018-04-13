@@ -4,11 +4,9 @@
 
 #include "Blocks.h"
 
-using namespace std;
-
 Blocks::Blocks(int blocksCount) {
-    previous= nullptr;
-    next=nullptr;
+    previous = nullptr;
+    next = nullptr;
     if (blocksCount <= 0) {
         cout << "Blocks construction fail! Blocks count less than 1." << endl;
     }
@@ -24,19 +22,19 @@ Blocks::Blocks(int blocksCount) {
 
 Blocks::Blocks(Blocks *previousBlocks) {
     previous = previousBlocks;
-    next= nullptr;
+    next = nullptr;
     if (previousBlocks->getHeadBlock()) {
         headBlock = new Block();
         Block *oldBlock = previousBlocks->getHeadBlock();
         Block *newBlock = headBlock;
         newBlock->setPageNumber(oldBlock->getPageNumber());
-        while(oldBlock->getNext()){
+        while (oldBlock->getNext()) {
             newBlock->setNext(new Block());
             newBlock->getNext()->setPrevious(newBlock);
             newBlock->getNext()->setPageNumber(oldBlock->getNext()->getPageNumber());
 
-            oldBlock=oldBlock->getNext();
-            newBlock=newBlock->getNext();
+            oldBlock = oldBlock->getNext();
+            newBlock = newBlock->getNext();
         }
 
     }
@@ -60,13 +58,13 @@ void Blocks::setNext(Blocks *next) {
     this->next = next;
 }
 
-//PageRequest *Blocks::getPageRequest() {
-//    return pageRequest;
-//}
+PageRequest *Blocks::getPageRequest() {
+    return pageRequest;
+}
 
-//void Blocks::setPageRequest(PageRequest *pageRequest) {
-//    this->pageRequest = pageRequest;
-//}
+void Blocks::setPageRequest(PageRequest *pageRequest) {
+    this->pageRequest = pageRequest;
+}
 
 Block *Blocks::getHeadBlock() {
     return headBlock;
@@ -151,6 +149,7 @@ Block *Blocks::getBlockByOptimal(PageRequest *pageRequest) {
         Block *getBlockByOptimal(PageRequest *pageRequest) {
             if (!previous && !next) {
                 // If this block is the only one, return this block.
+                delete this;
                 return block;
             }
             if (block->getPageNumber() == pageRequest->getPageNumber()) {
@@ -162,7 +161,10 @@ Block *Blocks::getBlockByOptimal(PageRequest *pageRequest) {
                 } else {
                     // Else(not exists next request),
                     // return the head block of the block link after remove.
-                    return remove()->block;
+                    BlockLink *blockLink = remove();
+                    Block *block = blockLink->block;
+                    delete blockLink;
+                    return block;
                 }
             } else {
                 // Else(different page number), and...
@@ -180,6 +182,7 @@ Block *Blocks::getBlockByOptimal(PageRequest *pageRequest) {
                 } else {
                     // Else(not exists next request),
                     // return this block.
+                    delete this;
                     return block;
                 }
             }
@@ -187,11 +190,11 @@ Block *Blocks::getBlockByOptimal(PageRequest *pageRequest) {
         }
     };
 
-    BlockLink *bl=new BlockLink(headBlock);
+    BlockLink *bl = new BlockLink(headBlock);
 
-    Block *ret=bl->getBlockByOptimal(pageRequest);
+    Block *ret = bl->getBlockByOptimal(pageRequest);
 
-    delete bl;
+//    delete bl;
 
     return ret;
 
@@ -199,49 +202,33 @@ Block *Blocks::getBlockByOptimal(PageRequest *pageRequest) {
 
 Blocks::RequestResultEnum Blocks::request(PageRequest *pageRequest) {
     Block *block = headBlock;
+    this->pageRequest = pageRequest;
     do {
         if (block->getPageNumber() == -1) {
             block->setPageNumber(pageRequest->getPageNumber());
-            return LOADED;
+            requestResult = LOADED;
+            break;
         } else if (block->getPageNumber() == pageRequest->getPageNumber()) {
-            return SUCCESS;
+            requestResult = SUCCESS;
+            break;
         } else if (block->getNext()) {
             block = block->getNext();
         } else {
-            return REPLACE_REQUIRE;
-        }
-    } while (true);
-}
-
-void Blocks::printWithPageRequest(PageRequest *pageRequest) {
-    PageRequest *request = pageRequest;
-    do {
-        cout << request->getPageNumber();
-        if (request->getNext()) {
-            cout << "   ";
-            request = request->getNext();
-        } else {
-            cout << endl;
+            requestResult = REPLACE_REQUIRE;
             break;
         }
     } while (true);
-    request = pageRequest;
+    return requestResult;
+}
+
+void Blocks::print() {
+    pageRequest->print();
     Block *block = headBlock;
-    printLineWithPageRequest(request);
+    printLine();
     int blockIndex = 0;
     do {
-        do {
-            printPageNumbersByBlockIndex(blockIndex);
-            if (request->getNext()) {
-                cout << " ";
-                request = request->getNext();
-            } else {
-                cout << endl;
-                break;
-            }
-        } while (true);
-
-        printLineWithPageRequest(request);
+        printPageNumbersByBlockIndex(blockIndex);
+        printLine();
         if (block->getNext()) {
             blockIndex++;
             block = block->getNext();
@@ -251,30 +238,50 @@ void Blocks::printWithPageRequest(PageRequest *pageRequest) {
     } while (true);
 }
 
-void Blocks::printLineWithPageRequest(PageRequest *pageRequest) {
-    do {
+void Blocks::printLine() {
+    if (!(requestResult == SUCCESS)) {
         cout << "|-|";
-        if (pageRequest->getNext()) {
-            cout << " ";
-            pageRequest = pageRequest->getNext();
-        } else {
-            cout << endl;
-            break;
-        }
-    } while (true);
+    } else {
+        cout << "   ";
+    }
+    if (pageRequest->getNext()) {
+        cout << " ";
+        next->printLine();
+    } else {
+        cout << endl;
+    }
 }
 
 void Blocks::printPageNumbersByBlockIndex(int blockIndex) {
     Block *block = headBlock;
-    if (blockIndex == 0) {
-        cout << "|";
-        if (block->getPageNumber() == -1) {
-            cout << " ";
-        } else {
-            cout << block->getPageNumber();
-        }
-        cout << "|";
+    int index = blockIndex;
+    if (!(requestResult == SUCCESS)) {
+        do {
+            if (index == 0) {
+                cout << "|";
+                if (block->getPageNumber() == -1) {
+                    cout << " ";
+                } else {
+                    cout << block->getPageNumber();
+                }
+                cout << "|";
+                break;
+            } else {
+                block = block->getNext();
+                index--;
+            }
+        } while (true);
     } else {
-        printPageNumbersByBlockIndex(--blockIndex);
+        cout << "   ";
     }
+    if (next) {
+        cout << " ";
+        next->printPageNumbersByBlockIndex(blockIndex);
+    } else {
+        cout << endl;
+    }
+}
+
+Blocks::RequestResultEnum Blocks::getRequestResult() {
+    return requestResult;
 }

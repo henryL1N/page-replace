@@ -28,7 +28,7 @@ int main() {
 
     blocks->replaceByOptimal(request);
 
-    blocks->printWithPageRequest(request);
+    blocks->print();
 
     cout<<"hello"<<endl;
 }

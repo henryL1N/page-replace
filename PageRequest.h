@@ -2,8 +2,11 @@
 // Created by 林庆华 on 11/04/2018.
 //
 
-#ifndef PAGE_REPLACE_CPP_REQUEST_H
-#define PAGE_REPLACE_CPP_REQUEST_H
+#ifndef PAGE_REPLACE_CPP_PAGEREQUEST_H
+#define PAGE_REPLACE_CPP_PAGEREQUEST_H
+
+#include <iostream>
+using namespace std;
 
 /**
  * Page request
@@ -63,7 +66,12 @@ public:
      */
     void setPageNumber(int pageNumber);
 
+    /**
+     * Print page requests.
+     */
+    void print();
+
 };
 
 
-#endif //PAGE_REPLACE_CPP_REQUEST_H
+#endif //PAGE_REPLACE_CPP_PAGEREQUEST_H
