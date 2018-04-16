@@ -7,6 +7,7 @@
 
 #include <list>
 #include "Block.h"
+#include "Request.h"
 #include "PageReplacementAlgorithm.h"
 
 using namespace std;
@@ -20,17 +21,18 @@ public:
 private:
 
     list<Block> *blocks;
+private:
 
     PageReplacementAlgorithm *pageReplacementAlgorithm;
-
 public:
+
+    PageReplacementAlgorithm *getPageReplacementAlgorithm() const;
+
+    void setPageReplacementAlgorithm(PageReplacementAlgorithm *pageReplacementAlgorithm);
 
     explicit Memory(int blocksCount);
 
     Block response(Request request);
-
-    Block response(RequestSequence requestSequence);
-
 
 };
 

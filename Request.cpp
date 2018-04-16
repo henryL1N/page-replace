@@ -11,3 +11,7 @@ int Request::getPageNumber() const {
 void Request::setPageNumber(int pageNumber) {
     Request::pageNumber = pageNumber;
 }
+
+Request::Request(int pageNumber) : pageNumber(pageNumber) {
+    this->setPageNumber(pageNumber);
+}

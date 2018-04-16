@@ -6,7 +6,6 @@
 #define PAGE_REPLACE_CPP_BLOCKS_H
 
 #include <iostream>
-#include "PageRequest.h"
 #include "Block.h"
 
 using namespace std;

@@ -10,6 +10,8 @@ class Request {
 private:
     int pageNumber;
 public:
+    explicit Request(int pageNumber);
+
     int getPageNumber() const;
 
     void setPageNumber(int pageNumber);
