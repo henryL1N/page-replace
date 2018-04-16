@@ -27,6 +27,9 @@ public:
 
     explicit Memory(int blocksCount);
 
+    Block response(Request request);
+
+    Block response(RequestSequence requestSequence);
 
 
 };

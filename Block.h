@@ -5,8 +5,6 @@
 #ifndef PAGE_REPLACE_CPP_BLOCK_H
 #define PAGE_REPLACE_CPP_BLOCK_H
 
-#include "PageRequest.h"
-
 /**
  * Block
  */
