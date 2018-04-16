@@ -13,5 +13,9 @@ void Block::load(int pageNumber) {
 }
 
 void Block::clear() {
-    pageNumber = -1;
+    this->pageNumber = Block::EMPTY;
+}
+
+int Block::getPageNumber() {
+    return this->pageNumber;
 }

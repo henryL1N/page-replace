@@ -15,9 +15,11 @@ class PageReplacementAlgorithm {
 
 public:
 
-    virtual void replace(list<Block> *blocks, int pageNumber)=0;
+    virtual void monitor(Request *request)=0;
 
-    virtual void replace(list<Block> *blocks, list<Request> *requestList)=0;
+    virtual Block *replace(list<Block> *blocks)=0;
+
+    virtual void *load(Request *request)=0;
 
 };
 

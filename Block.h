@@ -10,6 +10,9 @@
  */
 class Block {
 
+public:
+    static const int EMPTY = -1;
+
 private:
 
     /**

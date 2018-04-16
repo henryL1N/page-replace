@@ -6,6 +6,7 @@
 #include "Tools.h"
 
 PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
+
     //input blocks count
     int blocksCount;
     do {

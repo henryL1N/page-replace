@@ -16,23 +16,30 @@ class Memory {
 
 public:
 
+    enum RequestResultEnum {
 
+        SUCCESS,//successfully requested in recently stored pages
+
+        LOADED,//requested page was not stored in the blocks and one or more blocks are empty
+
+        REPLACED//requested page was not stored in the blocks and none of them is empty
+
+    };
 
 private:
 
     list<Block> *blocks;
-private:
-
+    RequestResultEnum requestResult;
     PageReplacementAlgorithm *pageReplacementAlgorithm;
-public:
 
-    PageReplacementAlgorithm *getPageReplacementAlgorithm() const;
+public:
+    RequestResultEnum getRequestResult() const;
 
     void setPageReplacementAlgorithm(PageReplacementAlgorithm *pageReplacementAlgorithm);
 
-    explicit Memory(int blocksCount);
+    explicit Memory(long blocksCount);
 
-    Block response(Request request);
+    Block *response(Request *request);
 
 };
 

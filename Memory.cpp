@@ -4,14 +4,42 @@
 
 #include "Memory.h"
 
-PageReplacementAlgorithm *Memory::getPageReplacementAlgorithm() const {
-    return pageReplacementAlgorithm;
-}
-
 void Memory::setPageReplacementAlgorithm(PageReplacementAlgorithm *pageReplacementAlgorithm) {
     Memory::pageReplacementAlgorithm = pageReplacementAlgorithm;
 }
 
-Memory::Memory(int blocksCount) {
-    this->blocks=new list<Block>(blocksCount,Block());
+Memory::Memory(long blocksCount) {
+    this->blocks = new list<Block>(blocksCount, Block());
+}
+
+Memory::RequestResultEnum Memory::getRequestResult() const {
+    return requestResult;
+}
+
+Block *Memory::response(Request *request) {
+    this->pageReplacementAlgorithm->monitor(request);
+    Block *block = nullptr;
+    bool hasEmptyBlock = false;
+    bool pageFound = false;
+    for (auto &it:*this->blocks) {
+        if (it.getPageNumber() == request->getPageNumber()) {
+            pageFound = true;
+            this->requestResult = Memory::RequestResultEnum::SUCCESS;
+            block = &it;
+            break;
+        } else if (!hasEmptyBlock && it.getPageNumber() == Block::EMPTY) {
+            hasEmptyBlock = true;
+            block = &it;
+        }
+    }
+    if (!pageFound) {
+        if (hasEmptyBlock) {
+            block->load(request->getPageNumber());
+            this->requestResult = Memory::RequestResultEnum::LOADED;
+        } else {
+            block = this->pageReplacementAlgorithm->replace(this->blocks);
+            this->requestResult = Memory::RequestResultEnum::REPLACED;
+        }
+    }
+    return block;
 }

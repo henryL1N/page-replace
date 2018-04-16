@@ -8,5 +8,4 @@
 int main() {
     PageReplacementAlgorithmTester t;
     t.run();
-
 }
