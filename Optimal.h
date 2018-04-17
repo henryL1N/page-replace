@@ -9,9 +9,15 @@
 #include "PageReplacementAlgorithm.h"
 
 class Optimal : public PageReplacementAlgorithm{
+private:
+    list<Request> *requestList;
+    list<Request>::iterator it;
 public:
+    explicit Optimal(list<Request> *requestList);
+
     Block *replace(list<Block> *blocks) override;
 
+    void monitor(Request *request) override;
 };
 
 

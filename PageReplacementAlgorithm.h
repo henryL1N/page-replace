@@ -19,8 +19,6 @@ public:
 
     virtual Block *replace(list<Block> *blocks)=0;
 
-    virtual void *load(Request *request)=0;
-
 };
 
 #endif //MAIN_CPP_PAGEREPLACEMENTALGORITHM_H

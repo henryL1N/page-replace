@@ -4,6 +4,7 @@
 
 #include "PageReplacementAlgorithmTester.h"
 #include "Tools.h"
+#include "Optimal.h"
 
 PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
 
@@ -45,9 +46,10 @@ PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
 }
 
 void PageReplacementAlgorithmTester::run() {
-    this->run(this->optimal);
-    this->run(this->fifo);
-    this->run(this->lru);
+    Optimal *optimal=new Optimal(this->requestList);
+//    this->run(this->optimal);
+//    this->run(this->fifo);
+//    this->run(this->lru);
 }
 
 void PageReplacementAlgorithmTester::run(PageReplacementAlgorithm *pageReplacementAlgorithm) {

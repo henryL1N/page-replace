@@ -12,9 +12,9 @@ class PageReplacementAlgorithmTester {
 private:
     Memory *memory;
     list<Request> *requestList;
-    PageReplacementAlgorithm *optimal;
-    PageReplacementAlgorithm *fifo;
-    PageReplacementAlgorithm *lru;
+//    PageReplacementAlgorithm *optimal;
+//    PageReplacementAlgorithm *fifo;
+//    PageReplacementAlgorithm *lru;
 
 
 public:
