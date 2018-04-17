@@ -20,10 +20,10 @@ public:
         T out;
         if (typeid(T) == typeid(char *)) {
             void *p = malloc(255);
-            long l = (long) p;
+            auto l = (long) p;
             out = (T) l;
         }
-        while (1) {
+        while (true) {
             cout << prompt;
             if (!(cin >> out) || cin.peek() != '\n') {
                 cin.clear();
@@ -34,7 +34,7 @@ public:
     }
 
     static list<int> *convertStringToIntegerList(char *string, char separator) {
-        list<int> *ret = new list<int>;
+        auto *ret = new list<int>;
         //converted value
         int value = 0;
         //sign 0:unknown(none of '+' or '-' or number was found); 1:number or '+' found in first digit; -1:'-' found in first digit

@@ -11,6 +11,10 @@ class FIFO : public PageReplacementAlgorithm {
 
 private:
 
+    /**
+     * queue of loaded page numbers
+     * 页面加载队列
+     */
     list<int> loadQueue;
 
 public:

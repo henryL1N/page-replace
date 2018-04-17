@@ -10,11 +10,19 @@ Optimal::Optimal(list<Request *> *requestList) {
     }
 }
 
+void Optimal::monitor(Request *request) {
+    //remove requests before recent request in the list
+    //在请求列表中移除当前请求之前的请求
+    while (request != *this->requestList.begin()) {
+        this->requestList.pop_front();
+    }
+}
+
 Block *Optimal::replace(list<Block *> *blocks) {
     //copy block list passed by memory
     //复制内存传入的块列表
     list<Block *> tempBlocks = *blocks;
-    //declare block to be return
+    //declare block to be replaced and returned
     //声明用于置换及返回的块
     Block *block = nullptr;
     //boolean to bypass recent request in loop
@@ -61,12 +69,4 @@ Block *Optimal::replace(list<Block *> *blocks) {
     //return replaced block
     //返回置换后的块
     return block;
-}
-
-void Optimal::monitor(Request *request) {
-    //remove requests before recent request in the list
-    //在请求列表中移除当前请求之前的请求
-    while (request != *this->requestList.begin()) {
-        this->requestList.pop_front();
-    }
 }
