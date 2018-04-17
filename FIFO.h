@@ -5,14 +5,16 @@
 #ifndef MAIN_CPP_FIFO_H
 #define MAIN_CPP_FIFO_H
 
-
 #include "PageReplacementAlgorithm.h"
 
-class FIFO : public PageReplacementAlgorithm{
+class FIFO : public PageReplacementAlgorithm {
 private:
-
+    list<int> loadQueue;
 public:
-    Block *replace(list<Block*> *blocks) override;
+
+    void monitor(Request *request) override;
+
+    Block *replace(list<Block *> *blocks) override;
 
 };
 

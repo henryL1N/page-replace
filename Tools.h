@@ -33,8 +33,8 @@ public:
         return out;
     }
 
-    static list<int> *convertStringToIntegerList(char *string, char separator){
-        list<int> *ret=new list<int>;
+    static list<int> *convertStringToIntegerList(char *string, char separator) {
+        list<int> *ret = new list<int>;
         //converted value
         int value = 0;
         //sign 0:unknown(none of '+' or '-' or number was found); 1:number or '+' found in first digit; -1:'-' found in first digit
@@ -61,7 +61,7 @@ public:
                 list<int> *subList = convertStringToIntegerList(string, separator);
                 if (subList->empty()) {
                     ret->clear();
-                }else {
+                } else {
                     ret->insert(ret->end(), subList->begin(), subList->end());
                 }
                 delete subList;

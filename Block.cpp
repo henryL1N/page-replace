@@ -21,9 +21,9 @@ int Block::getPageNumber() {
 }
 
 bool Block::isEmpty() {
-    return this->pageNumber==Block::EMPTY;
+    return this->pageNumber == Block::EMPTY;
 }
 
 Block::Block(int pageNumber) {
-    this->pageNumber=pageNumber;
+    this->pageNumber = pageNumber;
 }

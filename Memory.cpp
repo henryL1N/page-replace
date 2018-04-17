@@ -8,8 +8,7 @@ void Memory::setPageReplacementAlgorithm(PageReplacementAlgorithm *pageReplaceme
     Memory::pageReplacementAlgorithm = pageReplacementAlgorithm;
 }
 
-Memory::Memory(unsigned long blocksCount) {
-    this->blocks = new list<Block *>();
+Memory::Memory(unsigned long blocksCount) : Memory() {
     for (; blocksCount > 0; blocksCount--) {
         this->blocks->push_back(new Block());
     }
@@ -60,9 +59,18 @@ Memory *Memory::getSnapshot() {
 
 Memory::Memory() {
     this->blocks = new list<Block *>();
-    this->responsedBlock = nullptr;
+    this->clear();
+    this->pageReplacementAlgorithm = nullptr;
 }
 
 list<Block *> *Memory::getBlocks() const {
     return this->blocks;
+}
+
+void Memory::clear() {
+    for (auto it:*this->blocks) {
+        it->clear();
+    }
+    this->requestResult = Memory::RequestResultEnum::NONE;
+    this->responsedBlock = nullptr;
 }

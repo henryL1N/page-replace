@@ -18,6 +18,8 @@ public:
 
     enum RequestResultEnum {
 
+        NONE,//never requested
+
         SUCCESS,//successfully requested in recently stored pages
 
         LOADED,//requested page was not stored in the blocks and one or more blocks are empty
@@ -28,7 +30,7 @@ public:
 
 private:
 
-    list<Block*> *blocks;
+    list<Block *> *blocks;
 public:
     list<Block *> *getBlocks() const;
 
@@ -50,6 +52,8 @@ public:
     Block *response(Request *request);
 
     Memory *getSnapshot();
+
+    void clear();
 
 };
 

@@ -5,6 +5,8 @@
 #include "PageReplacementAlgorithmTester.h"
 #include "Tools.h"
 #include "Optimal.h"
+#include "FIFO.h"
+#include "LRU.h"
 
 PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
 
@@ -42,18 +44,22 @@ PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
     for (auto &it : *requestNumberList) {
         this->requestList->push_back(new Request(it));
     }
-
 }
 
 void PageReplacementAlgorithmTester::run() {
-    Optimal *optimal = new Optimal(this->requestList);
+    auto *optimal = new Optimal(this->requestList);
+    cout << endl << "Optimal page replacement algorithm:" << endl;
     this->run(optimal);
-//    this->run(this->optimal);
-//    this->run(this->fifo);
-//    this->run(this->lru);
+    auto *fifo = new FIFO();
+    cout << endl << "FIFO page replacement algorithm:" << endl;
+    this->run(fifo);
+    auto *lru = new LRU();
+    cout << endl << "LRU page replacement algorithm:" << endl;
+    this->run(lru);
 }
 
 void PageReplacementAlgorithmTester::run(PageReplacementAlgorithm *pageReplacementAlgorithm) {
+    this->memory->clear();
     this->memory->setPageReplacementAlgorithm(pageReplacementAlgorithm);
     auto *result = new list<Memory *>();
     for (auto it:*this->requestList) {
@@ -119,11 +125,13 @@ void PageReplacementAlgorithmTester::printPageNumber(list<Memory *> *result, uns
 }
 
 void PageReplacementAlgorithmTester::printRequestResult(list<Memory *> *result) {
+    unsigned long replaceCount = 0;
     for (auto it = result->begin(); it != result->end(); it++) {
         if ((*it)->getRequestResult() != Memory::RequestResultEnum::REPLACED) {
             cout << "   ";
-        } else if (it != --result->end()) {
+        } else {
             cout << " ^ ";
+            replaceCount++;
         }
         if (it != --result->end()) {
             cout << " ";
@@ -131,6 +139,7 @@ void PageReplacementAlgorithmTester::printRequestResult(list<Memory *> *result) 
             cout << endl;
         }
     }
+    cout << "Replacement count: " << replaceCount << endl;
 }
 
 void PageReplacementAlgorithmTester::printRequest() {

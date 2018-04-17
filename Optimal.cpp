@@ -14,10 +14,10 @@ Optimal::Optimal(list<Request *> *requestList) {
 Block *Optimal::replace(list<Block *> *blocks) {
     list<Block *> tempBlocks = *blocks;
     Block *block = nullptr;
-    bool recentRequest=true;
+    bool recentRequest = true;
     for (auto itReq:*this->requestList) {
         if (recentRequest) {
-            recentRequest=false;
+            recentRequest = false;
             continue;
         }
         for (auto itBlk = tempBlocks.begin(); itBlk != tempBlocks.end(); itBlk++) {
