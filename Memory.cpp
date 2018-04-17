@@ -8,8 +8,8 @@ void Memory::setPageReplacementAlgorithm(PageReplacementAlgorithm *pageReplaceme
     Memory::pageReplacementAlgorithm = pageReplacementAlgorithm;
 }
 
-Memory::Memory(long blocksCount) {
-    this->blocks = new list<Block>(blocksCount, Block());
+Memory::Memory(unsigned long blocksCount) {
+    this->blocks = new list<Block*>(blocksCount, new Block());
 }
 
 Memory::RequestResultEnum Memory::getRequestResult() const {
@@ -22,14 +22,14 @@ Block *Memory::response(Request *request) {
     bool hasEmptyBlock = false;
     bool pageFound = false;
     for (auto &it:*this->blocks) {
-        if (it.getPageNumber() == request->getPageNumber()) {
+        if (it->getPageNumber() == request->getPageNumber()) {
             pageFound = true;
             this->requestResult = Memory::RequestResultEnum::SUCCESS;
-            block = &it;
+            block = it;
             break;
-        } else if (!hasEmptyBlock && it.getPageNumber() == Block::EMPTY) {
+        } else if (!hasEmptyBlock && it->getPageNumber() == Block::EMPTY) {
             hasEmptyBlock = true;
-            block = &it;
+            block = it;
         }
     }
     if (!pageFound) {

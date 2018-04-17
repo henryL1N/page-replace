@@ -4,6 +4,6 @@
 
 #include "FIFO.h"
 
-Block *FIFO::replace(list<Block> *blocks) {
+Block *FIFO::replace(list<Block *> *blocks) {
     return nullptr;
 }

@@ -38,9 +38,9 @@ PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
     } while (!isValidRequest);
 
     //initialize request list
-    this->requestList=new list<Request>;
+    this->requestList=new list<Request*>;
     for (auto &it : *requestNumberList) {
-        this->requestList->push_back(Request(it));
+        this->requestList->push_back(new Request(it));
     }
 
 }

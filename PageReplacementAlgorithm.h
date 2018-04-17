@@ -17,7 +17,7 @@ public:
 
     virtual void monitor(Request *request)=0;
 
-    virtual Block *replace(list<Block> *blocks)=0;
+    virtual Block *replace(list<Block*> *blocks)=0;
 
 };
 

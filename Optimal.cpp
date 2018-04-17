@@ -4,18 +4,22 @@
 
 #include "Optimal.h"
 
-Optimal::Optimal(list<Request> *requestList) {
-    this->requestList=requestList;
-    this->it=this->requestList->begin();
-
+Optimal::Optimal(list<Request *> *requestList) {
+    this->requestList = requestList;
 }
 
-Block *Optimal::replace(list<Block> *blocks) {
+Block *Optimal::replace(list<Block *> *blocks) {
+    list<Block *> tempBlocks;
+    for (auto &it:*this->requestList) {
+
+    }
+
+
     return nullptr;
 }
 
 void Optimal::monitor(Request *request) {
-    if(this->it->getPageNumber()==request->getPageNumber()) {
-        it++;
+    while (request != *this->requestList->begin()) {
+        this->requestList->pop_front();
     }
 }

@@ -12,7 +12,7 @@ class FIFO : public PageReplacementAlgorithm{
 private:
 
 public:
-    Block *replace(list<Block> *blocks) override;
+    Block *replace(list<Block*> *blocks) override;
 
 };
 

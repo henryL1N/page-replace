@@ -28,7 +28,7 @@ public:
 
 private:
 
-    list<Block> *blocks;
+    list<Block*> *blocks;
     RequestResultEnum requestResult;
     PageReplacementAlgorithm *pageReplacementAlgorithm;
 
@@ -37,7 +37,7 @@ public:
 
     void setPageReplacementAlgorithm(PageReplacementAlgorithm *pageReplacementAlgorithm);
 
-    explicit Memory(long blocksCount);
+    explicit Memory(unsigned long blocksCount);
 
     Block *response(Request *request);
 
