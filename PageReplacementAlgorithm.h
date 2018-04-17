@@ -2,8 +2,8 @@
 // Created by 林庆华 on 2018/4/13.
 //
 
-#ifndef MAIN_CPP_PAGEREPLACEMENTALGORITHM_H
-#define MAIN_CPP_PAGEREPLACEMENTALGORITHM_H
+#ifndef MAIN_CPP_PAGE_REPLACEMENT_ALGORITHM_H
+#define MAIN_CPP_PAGE_REPLACEMENT_ALGORITHM_H
 
 #include <list>
 #include "Block.h"
@@ -11,6 +11,10 @@
 
 using namespace std;
 
+/**
+ * Abstract page replacement algorithm
+ * 抽象页面置换算法
+ */
 class PageReplacementAlgorithm {
 
 public:
@@ -34,4 +38,4 @@ public:
 
 };
 
-#endif //MAIN_CPP_PAGEREPLACEMENTALGORITHM_H
+#endif //MAIN_CPP_PAGE_REPLACEMENT_ALGORITHM_H

@@ -11,9 +11,9 @@
 PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
 
     //input blocks count
-    int blocksCount;
+    unsigned long blocksCount;
     do {
-        blocksCount = Tools::userInput<int>("Please input blocks count (>0): ");
+        blocksCount = Tools::userInput<unsigned long>("Please input blocks count (>0): ");
     } while (blocksCount <= 0);
 
     //initialize memory
@@ -72,14 +72,22 @@ void PageReplacementAlgorithmTester::run(PageReplacementAlgorithm *pageReplaceme
 void PageReplacementAlgorithmTester::print(list<Memory *> *result) {
     this->printRequest();
     this->printLine(result);
-    cout.flush();
     for (unsigned long i = 0; i < result->front()->getBlocks()->size(); i++) {
         this->printPageNumber(result, i);
         this->printLine(result);
-        cout.flush();
     }
     this->printRequestResult(result);
-    cout.flush();
+}
+
+void PageReplacementAlgorithmTester::printRequest() {
+    for (auto it = this->requestList->begin(); it != this->requestList->end(); it++) {
+        cout << (*it)->getPageNumber();
+        if (it != --this->requestList->end()) {
+            cout << "   ";
+        } else {
+            cout << endl;
+        }
+    }
 }
 
 void PageReplacementAlgorithmTester::printLine(list<Memory *> *result) {
@@ -140,15 +148,4 @@ void PageReplacementAlgorithmTester::printRequestResult(list<Memory *> *result) 
         }
     }
     cout << "Replacement count: " << replaceCount << endl;
-}
-
-void PageReplacementAlgorithmTester::printRequest() {
-    for (auto it = this->requestList->begin(); it != this->requestList->end(); it++) {
-        cout << (*it)->getPageNumber();
-        if (it != --this->requestList->end()) {
-            cout << "   ";
-        } else {
-            cout << endl;
-        }
-    }
 }

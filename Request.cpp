@@ -4,14 +4,10 @@
 
 #include "Request.h"
 
+Request::Request(int pageNumber) {
+    this->pageNumber = pageNumber;
+}
+
 int Request::getPageNumber() const {
-    return pageNumber;
-}
-
-void Request::setPageNumber(int pageNumber) {
-    Request::pageNumber = pageNumber;
-}
-
-Request::Request(int pageNumber) : pageNumber(pageNumber) {
-    this->setPageNumber(pageNumber);
+    return this->pageNumber;
 }

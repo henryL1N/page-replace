@@ -5,13 +5,13 @@
 #ifndef PAGE_REPLACE_CPP_BLOCK_H
 #define PAGE_REPLACE_CPP_BLOCK_H
 
+
 /**
  * Block
  */
 class Block {
 
 public:
-    Block(int pageNumber);
 
     static const int EMPTY = -1;
 
@@ -28,6 +28,8 @@ public:
      * Constructor without argument.
      */
     Block();
+
+    explicit Block(int pageNumber);
 
     /**
      * Get stored page number.
@@ -53,5 +55,6 @@ public:
     bool isEmpty();
 
 };
+
 
 #endif //PAGE_REPLACE_CPP_BLOCK_H

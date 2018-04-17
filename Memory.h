@@ -5,6 +5,7 @@
 #ifndef MAIN_CPP_MEMORY_H
 #define MAIN_CPP_MEMORY_H
 
+
 #include <list>
 #include "Block.h"
 #include "Request.h"
@@ -31,14 +32,19 @@ public:
 private:
 
     list<Block *> *blocks;
+
 public:
+
     list<Block *> *getBlocks() const;
 
 private:
 
     RequestResultEnum requestResult;
+
     PageReplacementAlgorithm *pageReplacementAlgorithm;
-    Block *responsedBlock;
+
+    Block *respondedBlock;
+
 public:
 
     Memory();

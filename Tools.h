@@ -12,9 +12,19 @@
 
 using namespace std;
 
+/**
+ * Tools
+ */
 class Tools {
+
 public:
 
+    /**
+     * User input by cin
+     * @tparam T input type
+     * @param prompt string to prompt
+     * @return inputed value
+     */
     template<typename T>
     static T userInput(const char *prompt) {
         T out;
@@ -33,6 +43,12 @@ public:
         return out;
     }
 
+    /**
+     * Convert string to integer list
+     * @param string string to convert
+     * @param separator char to separate values
+     * @return list of integer
+     */
     static list<int> *convertStringToIntegerList(char *string, char separator) {
         auto *ret = new list<int>;
         //converted value
@@ -76,5 +92,6 @@ public:
         return ret;
     }
 };
+
 
 #endif //MAIN_CPP_TOOLS_H
