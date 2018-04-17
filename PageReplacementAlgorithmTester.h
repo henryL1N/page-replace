@@ -11,7 +11,7 @@
 class PageReplacementAlgorithmTester {
 private:
     Memory *memory;
-    list<Request*> *requestList;
+    list<Request *> *requestList;
 //    PageReplacementAlgorithm *optimal;
 //    PageReplacementAlgorithm *fifo;
 //    PageReplacementAlgorithm *lru;
@@ -24,6 +24,15 @@ public:
 
     void run(PageReplacementAlgorithm *pageReplacementAlgorithm);
 
+    void print(list<Memory *> *result);
+
+    void printLine(list<Memory *> *result);
+
+    void printPageNumber(list<Memory *> *result, unsigned long index);
+
+    void printRequestResult(list<Memory *> *result);
+
+    void printRequest();
 };
 
 

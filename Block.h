@@ -11,6 +11,8 @@
 class Block {
 
 public:
+    Block(int pageNumber);
+
     static const int EMPTY = -1;
 
 private:
@@ -43,6 +45,12 @@ public:
      * Clear page number (set -1).
      */
     void clear();
+
+    /**
+     * Block is empty.
+     * @return true if it is empty
+     */
+    bool isEmpty();
 
 };
 

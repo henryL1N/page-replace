@@ -19,3 +19,11 @@ void Block::clear() {
 int Block::getPageNumber() {
     return this->pageNumber;
 }
+
+bool Block::isEmpty() {
+    return this->pageNumber==Block::EMPTY;
+}
+
+Block::Block(int pageNumber) {
+    this->pageNumber=pageNumber;
+}

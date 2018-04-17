@@ -29,17 +29,27 @@ public:
 private:
 
     list<Block*> *blocks;
+public:
+    list<Block *> *getBlocks() const;
+
+private:
+
     RequestResultEnum requestResult;
     PageReplacementAlgorithm *pageReplacementAlgorithm;
-
+    Block *responsedBlock;
 public:
+
+    Memory();
+
+    explicit Memory(unsigned long blocksCount);
+
     RequestResultEnum getRequestResult() const;
 
     void setPageReplacementAlgorithm(PageReplacementAlgorithm *pageReplacementAlgorithm);
 
-    explicit Memory(unsigned long blocksCount);
-
     Block *response(Request *request);
+
+    Memory *getSnapshot();
 
 };
 
