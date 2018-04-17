@@ -11,6 +11,7 @@
 PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
 
     //input blocks count
+    //输入内存块数
     unsigned long blocksCount;
     do {
         blocksCount = Tools::userInput<unsigned long>("Please input blocks count (>0): ");
@@ -93,7 +94,7 @@ void PageReplacementAlgorithmTester::printRequest() {
 void PageReplacementAlgorithmTester::printLine(list<Memory *> *result) {
     for (auto it = result->begin(); it != result->end(); it++) {
         if ((*it)->getRequestResult() != Memory::RequestResultEnum::SUCCESS) {
-            cout << "|-|";
+            cout << "+-+";
         } else if (it != --result->end()) {
             cout << "   ";
         }
