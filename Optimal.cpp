@@ -5,33 +5,41 @@
 #include "Optimal.h"
 
 Optimal::Optimal(list<Request *> *requestList) {
-    this->requestList = requestList;
+    this->requestList = new list<Request *>();
+    for (auto it:*requestList) {
+        this->requestList->push_back(it);
+    }
 }
 
 Block *Optimal::replace(list<Block *> *blocks) {
     list<Block *> tempBlocks = *blocks;
     Block *block = nullptr;
-    bool hasEmptyBlock = false;
+    bool recentRequest=true;
     for (auto itReq:*this->requestList) {
-
+        if (recentRequest) {
+            recentRequest=false;
+            continue;
+        }
         for (auto itBlk = tempBlocks.begin(); itBlk != tempBlocks.end(); itBlk++) {
             if ((*itBlk)->isEmpty()) {
                 block = *itBlk;
-                hasEmptyBlock = true;
                 break;
             } else if ((*itBlk)->getPageNumber() == itReq->getPageNumber()) {
-                block = (*itBlk);
                 tempBlocks.erase(itBlk);
+                if (tempBlocks.size() == 1) {
+                    block = tempBlocks.front();
+                }
                 break;
             }
         }
-        if (hasEmptyBlock) {
-            block->load((*(this->requestList->begin()))->getPageNumber());
+        if (block) {
+            break;
         }
     }
     if (!block) {
-        block=tempBlocks.front();
+        block = tempBlocks.front();
     }
+    block->load(this->requestList->front()->getPageNumber());
     return block;
 }
 

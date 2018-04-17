@@ -9,7 +9,10 @@ void Memory::setPageReplacementAlgorithm(PageReplacementAlgorithm *pageReplaceme
 }
 
 Memory::Memory(unsigned long blocksCount) {
-    this->blocks = new list<Block*>(blocksCount, new Block());
+    this->blocks = new list<Block *>();
+    for (; blocksCount > 0; blocksCount--) {
+        this->blocks->push_back(new Block());
+    }
 }
 
 Memory::RequestResultEnum Memory::getRequestResult() const {
@@ -26,7 +29,7 @@ Block *Memory::response(Request *request) {
             this->requestResult = Memory::RequestResultEnum::SUCCESS;
             this->responsedBlock = it;
             break;
-        } else if (!hasEmptyBlock && it->getPageNumber() == Block::EMPTY) {
+        } else if (!hasEmptyBlock && it->isEmpty()) {
             hasEmptyBlock = true;
             this->responsedBlock = it;
         }
@@ -44,20 +47,20 @@ Block *Memory::response(Request *request) {
 }
 
 Memory *Memory::getSnapshot() {
-    auto *snapshot=new Memory();
-    snapshot->requestResult=this->requestResult;
-    for(auto it:*this->blocks){
+    auto *snapshot = new Memory();
+    snapshot->requestResult = this->requestResult;
+    for (auto it:*this->blocks) {
         snapshot->blocks->push_back(new Block(it->getPageNumber()));
         if (this->responsedBlock == it) {
-            snapshot->responsedBlock=snapshot->blocks->back();
+            snapshot->responsedBlock = snapshot->blocks->back();
         }
     }
     return snapshot;
 }
 
 Memory::Memory() {
-    this->blocks=new list<Block*>();
-    this->responsedBlock= nullptr;
+    this->blocks = new list<Block *>();
+    this->responsedBlock = nullptr;
 }
 
 list<Block *> *Memory::getBlocks() const {
