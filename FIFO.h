@@ -8,8 +8,11 @@
 #include "PageReplacementAlgorithm.h"
 
 class FIFO : public PageReplacementAlgorithm {
+
 private:
+
     list<int> loadQueue;
+
 public:
 
     void monitor(Request *request) override;
