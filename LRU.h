@@ -9,9 +9,17 @@
 #include "PageReplacementAlgorithm.h"
 
 class LRU : public PageReplacementAlgorithm {
+
 private:
+
+    /**
+     * queue of accessed page numbers
+     * 页面访问队列
+     */
     list<int> accessQueue;
+
 public:
+
     void monitor(Request *request) override;
 
     Block *replace(list<Block *> *blocks) override;

@@ -5,6 +5,7 @@
 #ifndef MAIN_CPP_FIFO_H
 #define MAIN_CPP_FIFO_H
 
+
 #include "PageReplacementAlgorithm.h"
 
 class FIFO : public PageReplacementAlgorithm {
