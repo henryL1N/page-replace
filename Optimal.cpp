@@ -37,14 +37,10 @@ Block *Optimal::replace(list<Block *> *blocks) {
             recentRequest = false;
             continue;
         }
-        //if only one block left in list, it is the block to be replaced
-        //若列表中仅剩一个块，则置换该块
+        //if only one block left in list, it will be replaced, break the loop
+        //若列表中仅剩一个块，则置换该块并停止迭代请求列表以执行置换
         if (tempBlocks.size() == 1) {
             block=tempBlocks.front();
-        }
-        //if block was selected, break loop to replace
-        //若已找到用于置换的块，则停止迭代请求列表以执行置换
-        if (block) {
             break;
         }
         //iterate block list to exclude the blocks contain pages that will be requested again

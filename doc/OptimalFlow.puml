@@ -36,9 +36,6 @@ split again
             else(否)
                 if(块数量=1?)then(是)
                     :返回块=首块]
-                else(否)
-                endif
-                if(返回块非空?)then(是)
                     (A)
                     detach
                 else(否)
