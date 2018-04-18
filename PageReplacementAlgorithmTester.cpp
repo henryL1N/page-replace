@@ -14,7 +14,7 @@ PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
     //输入内存块数
     unsigned long blocksCount;
     do {
-        blocksCount = Tools::userInput<unsigned long>("Please input blocks count (>0): ");
+        blocksCount = Tools::userInput<unsigned long>("Please input blocks count 请输入物理块数量(>0): ");
     } while (blocksCount <= 0);
 
     //initialize memory
@@ -27,7 +27,8 @@ PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
     do {
         requestNumberString = Tools::userInput<char *>(
                 "Please input request sequence:\n"
-                "(0 <= page number <= 9)\n"
+                "请输入页面请求序列\n"
+                "(0 <= page number 页面编号 <= 9)\n"
                 "(e.g. \"7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1\")\n");
         requestNumberList = Tools::convertStringToIntegerList(requestNumberString, ',');
         if (!requestNumberList->empty()) {
@@ -49,13 +50,13 @@ PageReplacementAlgorithmTester::PageReplacementAlgorithmTester() {
 
 void PageReplacementAlgorithmTester::run() {
     auto *optimal = new Optimal(this->requestList);
-    cout << endl << "Optimal page replacement algorithm:" << endl;
+    cout << endl << "Optimal page replacement algorithm 最佳页面置换算法:" << endl;
     this->run(optimal);
     auto *fifo = new FIFO();
-    cout << endl << "FIFO page replacement algorithm:" << endl;
+    cout << endl << "FIFO page replacement algorithm 先进先出页面置换算法:" << endl;
     this->run(fifo);
     auto *lru = new LRU();
-    cout << endl << "LRU page replacement algorithm:" << endl;
+    cout << endl << "LRU page replacement algorithm 最近最少使用置换算法:" << endl;
     this->run(lru);
 }
 
@@ -148,5 +149,5 @@ void PageReplacementAlgorithmTester::printRequestResult(list<Memory *> *result) 
             cout << endl;
         }
     }
-    cout << "Replacement count: " << replaceCount << endl;
+    cout << "Replacement count 缺页次数: " << replaceCount << endl;
 }
