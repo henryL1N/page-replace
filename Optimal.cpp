@@ -37,6 +37,16 @@ Block *Optimal::replace(list<Block *> *blocks) {
             recentRequest = false;
             continue;
         }
+        //if only one block left in list, it is the block to be replaced
+        //若列表中仅剩一个块，则置换该块
+        if (tempBlocks.size() == 1) {
+            block=tempBlocks.front();
+        }
+        //if block was selected, break loop to replace
+        //若已找到用于置换的块，则停止迭代请求列表以执行置换
+        if (block) {
+            break;
+        }
         //iterate block list to exclude the blocks contain pages that will be requested again
         //迭代块列表以排除即将再次请求的块
         for (auto itBlk = tempBlocks.begin(); itBlk != tempBlocks.end(); itBlk++) {
@@ -44,18 +54,8 @@ Block *Optimal::replace(list<Block *> *blocks) {
             //若块包含将来请求的页面，则将块从块列表中移除
             if ((*itBlk)->getPageNumber() == itReq->getPageNumber()) {
                 tempBlocks.erase(itBlk);
-                //if only one block left in list, it is the block to be replaced
-                //若列表中仅剩一个块，则置换该块
-                if (tempBlocks.size() == 1) {
-                    block = tempBlocks.front();
-                }
                 break;
             }
-        }
-        //if block was selected, break loop to replace
-        //若已找到用于置换的块，则停止迭代请求列表以执行置换
-        if (block) {
-            break;
         }
     }
     //if none of block was selected (more than one block left in list), first block in list to be replaced
