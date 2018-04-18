@@ -1,0 +1,43 @@
+@startuml
+:LRU页面置换算法类;
+detach
+split
+    -[hidden]->
+    partition 构造方法 {
+        :初始化页面访问队列]
+        :返回;
+        detach
+    }
+    partition 监视页面请求 {
+        while(迭代页面访问队列)is( )
+            if(页面编号=请求?)then(是)
+                :将页面编号移至队列末端]
+                :返回;
+                detach
+            else(否)
+            endif
+        endwhile(结束)
+        :将请求送入访问队列末端;
+        :返回;
+        detach
+    }
+split again
+    -[hidden]->
+    partition 置换页面 {
+        :初始化返回块指针]
+            while(迭代块列表)is( )
+                if(块=访问队列前端?)then(是)
+                    :返回块=块]
+                    :返回块加载队列末端页面]
+                    :移除访问队列前端]
+                    (A)
+                    detach
+                else(否)
+                endif
+            endwhile(结束)
+        (A)
+        :返回返回块;
+        detach
+    }
+end split
+@enduml
