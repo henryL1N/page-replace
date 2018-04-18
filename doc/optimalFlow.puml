@@ -1,0 +1,66 @@
+@startuml
+:Optimal 页面置换算法类;
+detach
+split
+    -[hidden]->
+    partition 构造方法 {
+        :初始化请求列表]
+        :复制请求列表]
+        detach
+    }
+    partition 监视页面请求 {
+        while(请求=请求列表前端?)is(是)
+            :返回;
+        endwhile(否)
+        :移除请求列表前端;
+        detach
+    }
+split again
+    -[hidden]->
+    partition 置换页面 {
+        :复制传入的块列表
+        初始化返回块指针
+        置位当前请求标识位]
+        while(迭代请求列表)is( )
+            if(当前请求?)then(是)
+                :复
+                位
+                当
+                前
+                请
+                求
+                标
+                识
+                位;
+            else(否)
+                if(块数量=1?)then(是)
+                    :返回块=首块;
+                else(否)
+                endif
+                if(返回块非空?)then(是)
+                    (A)
+                    detach
+                else(否)
+                    while(迭代块列表)is( )
+                        if(块=请求?)then(是)
+                            :从块列表移除块;
+                            (B)
+                            detach
+                        else(否)
+                        endif
+                    endwhile(结束)
+                endif
+            endif
+        (B)
+        endwhile(结束)
+        (A)
+        if(返回块为空?)then(是)
+            :返回块=首块;
+        else(否)
+        endif
+        :返回块加载请求页面;
+        :返回返回块;
+        detach
+    }
+end split
+@enduml
