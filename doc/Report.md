@@ -127,17 +127,19 @@ Replacement count 缺页次数: 6
 
 ## 流程图
 
+![](./target/BasicFlow.png "基本流程")
+
 ### 最佳(Optimal)置换算法
 
-![alt text](./target/OptimalFlow.png "Optimal algorithm flow")
+![](./target/OptimalFlow.png "最佳(Optimal)置换算法流程")
 
 ### 先进先出(FIFO)页面置换算法
 
-![alt text](./target/FIFOFlow.png "Optimal algorithm flow")
+![](./target/FIFOFlow.png "先进先出(FIFO)页面置换算法流程")
 
 ### 最近最少使用(LRU)置换算法
 
-![alt text](./target/LRUFlow.png "Optimal algorithm flow")
+![](./target/LRUFlow.png "最近最少使用(LRU)置换算法流程")
 
 ## 数据结构说明
 
@@ -214,11 +216,11 @@ Replacement count 缺页次数: 6
 
 物理块数：3，请求序列：4,3,2,1,4,3,5,4,3,2,1,5
 
-![alt text](./target/SnapshotBlock3.png "3 blocks respond 4,3,2,1,4,3,5,4,3,2,1,5")
+![](./target/SnapshotBlock3.png "3 blocks respond 4,3,2,1,4,3,5,4,3,2,1,5")
 
 物理块数：4，请求序列：4,3,2,1,4,3,5,4,3,2,1,5
 
-![alt text](./target/SnapshotBlock4.png "4 blocks respond 4,3,2,1,4,3,5,4,3,2,1,5")
+![](./target/SnapshotBlock4.png "4 blocks respond 4,3,2,1,4,3,5,4,3,2,1,5")
 
 ## 心得体会及总结
 
