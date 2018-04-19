@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set PLANTUML_LIMIT_SIZE=8192
+plantuml -o "./target" *.puml
+pandoc ./Report.md -t docx -o ./target/Report.docx

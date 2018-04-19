@@ -9,3 +9,8 @@ plantuml
 ```$xslt
 brew install plantuml
 ```
+
+编译文档
+```
+./bdoc
+```
