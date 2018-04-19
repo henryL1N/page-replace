@@ -65,7 +65,7 @@ void PageReplacementAlgorithmTester::run(PageReplacementAlgorithm *pageReplaceme
     this->memory->setPageReplacementAlgorithm(pageReplacementAlgorithm);
     auto *result = new list<Memory *>();
     for (auto it:*this->requestList) {
-        this->memory->response(it);
+        this->memory->respond(it);
         result->push_back(this->memory->getSnapshot());
     }
     this->print(result);

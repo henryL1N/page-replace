@@ -18,7 +18,7 @@ Memory::RequestResultEnum Memory::getRequestResult() const {
     return requestResult;
 }
 
-Block *Memory::response(Request *request) {
+Block *Memory::respond(Request *request) {
     this->pageReplacementAlgorithm->monitor(request);
     bool hasEmptyBlock = false;
     bool pageFound = false;
