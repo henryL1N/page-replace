@@ -1,4 +1,5 @@
 @startuml
+scale 2
 :LRU页面置换算法类;
 detach
 split

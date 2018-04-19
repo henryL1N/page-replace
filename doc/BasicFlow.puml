@@ -1,4 +1,5 @@
 @startuml
+scale 2
 :开始;
 partition 初始化 {
     :输入块数量/
