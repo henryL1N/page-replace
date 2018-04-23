@@ -129,19 +129,19 @@ Replacement count 缺页次数: 6
 
 ### 基本流程
 
-![](./target/BasicFlow.png "基本流程")
+![](./target/BasicFlow.png)
 
 ### 最佳(Optimal)置换算法
 
-![](./target/OptimalFlow.png "最佳(Optimal)置换算法流程")
+![](./target/OptimalFlow.png)
 
 ### 先进先出(FIFO)页面置换算法
 
-![](./target/FIFOFlow.png "先进先出(FIFO)页面置换算法流程")
+![](./target/FIFOFlow.png)
 
 ### 最近最少使用(LRU)置换算法
 
-![](./target/LRUFlow.png "最近最少使用(LRU)置换算法流程")
+![](./target/LRUFlow.png)
 
 ## 数据结构说明
 
