@@ -214,15 +214,17 @@ Replacement count 缺页次数: 6
 
 ## 源程序
 
+源程序见src.zip
+
 ## 运行结果截图
 
 物理块数：3，请求序列：4,3,2,1,4,3,5,4,3,2,1,5
 
-![](./target/SnapshotBlock3.png "3 blocks respond 4,3,2,1,4,3,5,4,3,2,1,5")
+![](./target/SnapshotBlock3.png)
 
 物理块数：4，请求序列：4,3,2,1,4,3,5,4,3,2,1,5
 
-![](./target/SnapshotBlock4.png "4 blocks respond 4,3,2,1,4,3,5,4,3,2,1,5")
+![](./target/SnapshotBlock4.png)
 
 ## 心得体会及总结
 
