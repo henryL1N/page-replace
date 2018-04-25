@@ -214,7 +214,9 @@ Replacement count 缺页次数: 6
 
 ## 源程序
 
-源程序见src.zip
+源程序见`sourceCode.zip`
+
+另见：https://github.com/henryL1N/page-replace
 
 ## 运行结果截图
 
