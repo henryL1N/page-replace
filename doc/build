@@ -3,3 +3,4 @@
 set PLANTUML_LIMIT_SIZE=8192
 plantuml -o "./target" *.puml
 pandoc -f gfm ./Report.md -t docx -o ./target/ReportByPandoc.docx
+zip -r target/SourceCode.zip ../ -x ../.\* -x ../cmake-build-debug/\* -x ../doc/target/\*
