@@ -1,6 +1,6 @@
 “计算机操作系统”课程设计大作业
 
-要求见`./doc/Requirement.md`
+要求见`./doc/Requirements.md`
 
 文档编译依赖：
 
